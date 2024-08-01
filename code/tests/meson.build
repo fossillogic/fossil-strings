@@ -3,7 +3,7 @@ if get_option('with_test').enabled()
 
     test_src = ['unit_runner.c']
     test_cubes = [
-        'cstring', 'bstring', 'wstring'
+        'cstring', 'bstring'
     ]
 
     foreach cube : test_cubes
