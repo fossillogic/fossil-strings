@@ -110,7 +110,7 @@ FOSSIL_TEST(test_fossil_cstring_assignment) {
 
 // Test case: Default constructor
 FOSSIL_TEST(test_cstrings_default_constructor) {
-    char** strings = fossil_cstrs_create_empty();
+    char** strings = fossil_cstr_strdup("");
     ASSUME_ITS_EQUAL_SIZE(0, fossil_cstrs_size(strings));
     ASSUME_ITS_TRUE(fossil_cstrs_empty(strings));
     free(strings);
