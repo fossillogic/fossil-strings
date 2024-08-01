@@ -46,7 +46,7 @@ FOSSIL_TEST(test_fossil_wstr_compare) {
     const_wstring str2 = L"Hello";
     const_wstring str3 = L"World";
     
-    ASSUME_ITS_EQUAL(0, fossil_wstr_compare(str1, str2));
+    ASSUME_ITS_EQUAL_I32(0, fossil_wstr_compare(str1, str2));
     ASSUME_ITS_TRUE(fossil_wstr_compare(str1, str3) < 0);
     ASSUME_ITS_TRUE(fossil_wstr_compare(str3, str1) > 0);
 }
@@ -56,7 +56,7 @@ FOSSIL_TEST(test_fossil_wstr_copy) {
     wstring dest = (wstring)malloc(20 * sizeof(wchar_t));
     const_wstring src = L"Hello, World!";
     
-    ASSUME_ITS_EQUAL_STRING(dest, fossil_wstr_copy(dest, src));
+    ASSUME_ITS_EQUAL_WSTR(dest, fossil_wstr_copy(dest, src));
     ASSUME_ITS_TRUE(wcscmp(dest, src) == 0);
     free(dest); // Remember to free allocated memory
 }
@@ -67,7 +67,7 @@ FOSSIL_TEST(test_fossil_wstr_concat) {
     wcscpy(dest, L"Hello, ");
     const_wstring src = L"World!";
     
-    ASSUME_ITS_EQUAL_STRING(dest, fossil_wstr_concat(dest, src));
+    ASSUME_ITS_EQUAL_WSTR(dest, fossil_wstr_concat(dest, src));
     ASSUME_ITS_TRUE(wcscmp(dest, L"Hello, World!") == 0);
     free(dest); // Remember to free allocated memory
 }
@@ -94,8 +94,8 @@ FOSSIL_TEST(test_fossil_wstr_split) {
     wletter delimiter = L',';
     wstrings result = fossil_wstr_split(str, delimiter);
     
-    ASSUME_ITS_EQUAL_STRING(result[0], L"Hello");
-    ASSUME_ITS_EQUAL_STRING(result[1], L"World!");
+    ASSUME_ITS_EQUAL_WSTR(result[0], L"Hello");
+    ASSUME_ITS_EQUAL_WSTR(result[1], L"World!");
     
     // Free allocated memory
     fossil_wstr_erase_splits(result);
@@ -105,7 +105,7 @@ FOSSIL_TEST(test_fossil_wstr_split) {
 FOSSIL_TEST(test_fossil_wstr_strdup) {
     const_wstring str = L"Hello, World!";
     
-    ASSUME_ITS_EQUAL_STRING(fossil_wstr_strdup(str), str);
+    ASSUME_ITS_EQUAL_WSTR(fossil_wstr_strdup(str), str);
 }
 
 // Test case 8: Extract a substring from a wide string
@@ -113,7 +113,7 @@ FOSSIL_TEST(test_fossil_wstr_substr) {
     const_wstring str = L"Hello, World!";
     const_wstring substr = L"World";
     
-    ASSUME_ITS_EQUAL_STRING(fossil_wstr_substr(str, 7, 5), substr);
+    ASSUME_ITS_EQUAL_WSTR(fossil_wstr_substr(str, 7, 5), substr);
 }
 
 // Test case 9: Convert integer to wide string
@@ -121,14 +121,14 @@ FOSSIL_TEST(test_fossil_wstr_from_int) {
     int num = 123;
     const_wstring expected = L"123";
     
-    ASSUME_ITS_EQUAL_STRING(fossil_wstr_from_int(num), expected);
+    ASSUME_ITS_EQUAL_WSTR(fossil_wstr_from_int(num), expected);
 }
 
 // Test case 10: Convert wide string to integer
 FOSSIL_TEST(test_fossil_wstr_to_int) {
     const_wstring str = L"123";
     
-    ASSUME_ITS_EQUAL(123, fossil_wstr_to_int(str));
+    ASSUME_ITS_EQUAL_I32(123, fossil_wstr_to_int(str));
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * *

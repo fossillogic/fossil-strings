@@ -185,51 +185,6 @@ bstring fossil_bstr_from_double(double num) {
     return result;
 }
 
-bstring fossil_bstrstream_read(const_bstring str, size_t* pos, size_t len) {
-    bstring read_str = (bstring)malloc((len + 1) * sizeof(bletter));
-    if (!read_str) return NULL;
-    memcpy(read_str, str + *pos, len * sizeof(bletter));
-    read_str[len] = '\0';
-    *pos += len;
-    return read_str;
-}
-
-bstring fossil_bstrstream_read_line(const_bstring str, size_t* pos, size_t* end_pos) {
-    const_bstring start = str + *pos;
-    const_bstring end = fossil_bstr_find(start, '\n');
-    if (!end) end = str + strlen((const char *)str);
-    size_t len = end - start;
-    bstring line = (bstring)malloc((len + 1) * sizeof(bletter));
-    if (!line) return NULL;
-    memcpy(line, start, len * sizeof(bletter));
-    line[len] = '\0';
-    *end_pos = (end - str);
-    *pos = *end_pos + 1;
-    return line;
-}
-
-void fossil_bstrstream_write(bstring dest, size_t* pos, const_bstring src) {
-    size_t len = 0;
-    while (src[len] != '\0') len++;
-    memcpy(dest + *pos, src, len * sizeof(bletter));
-    *pos += len;
-}
-
-void fossil_bstrstream_append(bstring dest, size_t* pos, const_bstring src) {
-    size_t len = 0;
-    while (src[len] != '\0') len++;
-    memcpy(dest + *pos, src, len * sizeof(bletter));
-    *pos += len;
-}
-
-void fossil_bstrstream_seek(size_t* pos, size_t offset) {
-    *pos = offset;
-}
-
-size_t fossil_bstrstream_tell(const_bstring str, size_t pos) {
-    return pos;
-}
-
 int fossil_bstr_to_int(const_bstring str) {
     return atoi((const char *)str);
 }
