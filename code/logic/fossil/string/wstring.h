@@ -14,9 +14,6 @@
 #ifndef FOSSIL_STRINGS_WSTR_H
 #define FOSSIL_STRINGS_WSTR_H
 
-#include <stddef.h>
-#include <wchar.h>
-#include <wctype.h>
 #include "wletter.h"
 
 #ifdef __cplusplus

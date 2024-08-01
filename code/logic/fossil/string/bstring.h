@@ -18,8 +18,6 @@
 extern "C" {
 #endif
 
-#include <string.h> // For C string operations like strlen, strcpy, etc.
-#include <stdlib.h> // For dynamic memory allocation functions like malloc, free
 #include "bletter.h" // For the bletter type definition
 
 // Classic byte string type definitions

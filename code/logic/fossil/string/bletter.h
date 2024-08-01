@@ -18,8 +18,11 @@
 extern "C" {
 #endif
 
-#include <stddef.h>
-#include <stdint.h>
+#include <stddef.h> // For size_t
+#include <stdint.h> // For standard integer types like int, uint8_t, etc.
+#include <string.h> // For C string operations like strlen, strcpy, etc.
+#include <stdlib.h> // For dynamic memory allocation functions like malloc, free
+#include <stdio.h>  // For standard I/O operations like printf, scanf, etc.
 
 // charecter types for the string types
 typedef uint16_t bletter;             // byte letter character

@@ -18,10 +18,13 @@
 extern "C" {
 #endif
 
-#include <stddef.h>
-#include <wchar.h>
-#include <wctype.h>
-#include <stdint.h>
+#include <wchar.h>  // For wide character functions like wcslen, wcscpy, etc.
+#include <wctype.h> // For wide character classification functions like iswalpha, iswdigit, etc.
+#include <stddef.h> // For size_t
+#include <stdint.h> // For standard integer types like int, uint8_t, etc.
+#include <string.h> // For C string operations like strlen, strcpy, etc.
+#include <stdlib.h> // For dynamic memory allocation functions like malloc, free
+#include <stdio.h>  // For standard I/O operations like printf, scanf, etc.
 
 // charecter types for the string types
 typedef wchar_t wletter;             // wiswig character

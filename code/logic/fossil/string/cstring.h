@@ -18,8 +18,6 @@
 extern "C" {
 #endif
 
-#include <string.h> // For C string operations like strlen, strcpy, etc.
-#include <stdlib.h> // For dynamic memory allocation functions like malloc, free
 #include "cletter.h" // For classic C letter type definitions
 
 // Classic C string type definitions
