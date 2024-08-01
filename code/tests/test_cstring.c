@@ -42,29 +42,29 @@ FOSSIL_TEARDOWN(c_string_fixture) {
 
 // Test case: CString creation
 FOSSIL_TEST(test_fossil_cstring_create) {
-    char* var = fossil_cstr_create("Hello");
+    char* var = fossil_cstr_strdup("Hello");
     ASSUME_ITS_TRUE(strcmp(var, "Hello") == 0);
     free(var);
 }
 
 // Test case: CString length
 FOSSIL_TEST(test_fossil_cstring_length) {
-    char* var = fossil_cstr_create("Hello");
+    char* var = fossil_cstr_strdup("Hello");
     ASSUME_ITS_EQUAL_SIZE(5, strlen(var));
     free(var);
 }
 
 // Test case: CString creation empty
 FOSSIL_TEST(test_fossil_cstring_create_empty) {
-    char* var = fossil_cstr_create("");
+    char* var = fossil_cstr_strdup("");
     ASSUME_ITS_EQUAL_SIZE(0, strlen(var));
     free(var);
 }
 
 // Test case: CString concatenation
 FOSSIL_TEST(test_fossil_cstring_concatenation) {
-    char* var1 = fossil_cstr_create("Hello, ");
-    char* var2 = fossil_cstr_create("World!");
+    char* var1 = fossil_cstr_strdup("Hello, ");
+    char* var2 = fossil_cstr_strdup("World!");
     char* concatenated = fossil_cstr_concat(var1, var2);
     ASSUME_ITS_TRUE(strcmp(concatenated, "Hello, World!") == 0);
     free(var1);
@@ -74,7 +74,7 @@ FOSSIL_TEST(test_fossil_cstring_concatenation) {
 
 // Test case: CString substring
 FOSSIL_TEST(test_fossil_cstring_substring) {
-    char* var = fossil_cstr_create("Hello, World!");
+    char* var = fossil_cstr_strdup("Hello, World!");
     char* substring = fossil_cstr_substr(var, 7, 6);
     ASSUME_ITS_TRUE(strcmp(substring, "World!") == 0);
     free(var);
@@ -83,7 +83,7 @@ FOSSIL_TEST(test_fossil_cstring_substring) {
 
 // Test case: CString substring length
 FOSSIL_TEST(test_fossil_cstring_substr_length) {
-    char* var = fossil_cstr_create("Hello, World!");
+    char* var = fossil_cstr_strdup("Hello, World!");
     char* substring = fossil_cstr_substr(var, 7, 5);
     ASSUME_ITS_TRUE(strcmp(substring, "World") == 0);
     ASSUME_ITS_EQUAL_SIZE(5, strlen(substring));
@@ -93,7 +93,7 @@ FOSSIL_TEST(test_fossil_cstring_substr_length) {
 
 // Test case: CString clear
 FOSSIL_TEST(test_fossil_cstring_clear) {
-    char* var = fossil_cstr_create("Hello, World!");
+    char* var = fossil_cstr_strdup("Hello, World!");
     var[0] = '\0'; // Simulate clear
     ASSUME_ITS_EQUAL_SIZE(0, strlen(var));
     free(var);
@@ -101,7 +101,7 @@ FOSSIL_TEST(test_fossil_cstring_clear) {
 
 // Test case: CString assignment
 FOSSIL_TEST(test_fossil_cstring_assignment) {
-    char* var = fossil_cstr_create("Hello,");
+    char* var = fossil_cstr_strdup("Hello,");
     char* copy = fossil_cstr_copy(var, " World!");
     ASSUME_ITS_TRUE(strcmp(copy, "Hello, World!") == 0);
     free(var);
