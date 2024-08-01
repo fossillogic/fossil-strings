@@ -21,11 +21,10 @@ extern "C" {
 #endif
 
 // Classic wide-character C string types
-typedef wchar_t wletter;
-typedef wstring wstring;
-typedef wchar_t** wstrings;
-typedef const wstring const_wstring;
-typedef const wchar_t** const_wstrings;
+typedef wletter* wstring;
+typedef wletter** wstrings;
+typedef const wletter const_wstring;
+typedef const wletter** const_wstrings;
 
 // C interface functions
 
@@ -61,7 +60,7 @@ const_wstring fossil_wstr_find(const_wstring str, wletter ch);
  *  @param str The wide string to reverse.
  *  @return    A pointer to the reversed wide string.
  */
-const_wstring fossil_wstr_reverse(const_wstring str);
+wstring fossil_wstr_reverse(wstring str);
 
 /** Split a wide string into multiple substrings based on a delimiter.
  *  @param str       The wide string to split.
@@ -124,49 +123,6 @@ wstring fossil_wstr_from_ullong(unsigned long long num);
  *  @return    The wide string representation of the number.
  */
 wstring fossil_wstr_from_double(double num);
-
-/** Read a specified number of characters from a wide string stream.
- *  @param str  The wide string stream.
- *  @param pos  The current position in the stream.
- *  @param len  The number of characters to read.
- *  @return     The read wide string.
- */
-wstring fossil_wstrstream_read(const_wstring str, size_t* pos, size_t len);
-
-/** Read a line from a wide string stream.
- *  @param str      The wide string stream.
- *  @param pos      The current position in the stream.
- *  @param end_pos  The position of the end of the line.
- *  @return         The read line as a wide string.
- */
-wstring fossil_wstrstream_read_line(const_wstring str, size_t* pos, size_t* end_pos);
-
-/** Write a wide string to a wide string stream at the specified position.
- *  @param dest The destination wide string stream.
- *  @param pos  The current position in the stream.
- *  @param src  The source wide string to write.
- */
-void fossil_wstrstream_write(wstring dest, size_t* pos, const_wstring src);
-
-/** Append a wide string to a wide string stream at the specified position.
- *  @param dest The destination wide string stream.
- *  @param pos  The current position in the stream.
- *  @param src  The source wide string to append.
- */
-void fossil_wstrstream_append(wstring dest, size_t* pos, const_wstring src);
-
-/** Seek to a new position in a wide string stream.
- *  @param pos    The current position in the stream.
- *  @param offset The offset to seek by.
- */
-void fossil_wstrstream_seek(size_t* pos, size_t offset);
-
-/** Get the current position in a wide string stream.
- *  @param str The wide string stream.
- *  @param pos The current position in the stream.
- *  @return    The current position in the stream.
- */
-size_t fossil_wstrstream_tell(const_wstring str, size_t pos);
 
 /** Convert a wide string to an integer.
  *  @param str The wide string representing the number.

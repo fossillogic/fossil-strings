@@ -65,7 +65,6 @@ const_bstring fossil_bstr_reverse(const_bstring str) {
 }
 
 bstrings fossil_bstr_split(const_bstring str, bletter delimiter) {
-    size_t len = 0;
     bstrings splits = NULL;
     size_t count = 0;
     const_bstring start = str;

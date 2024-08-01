@@ -14,7 +14,7 @@
 #include "fossil/string/bletter.h"
 
 bletter fossil_bletter_at(const_bletter *str, size_t index) {
-    if (str == NULL || index < 0)
+    if (str == NULL)
         return (uint16_t)'\0';
     
     size_t len = 0;
@@ -81,7 +81,7 @@ int16_t fossil_bletter_is_print(bletter ch) {
 }
 
 int16_t fossil_bletter_is_cntrl(bletter ch) {
-    return (ch >= 0 && ch <= 31) || (ch == 127);
+    return (ch <= 31) || (ch == 127);
 }
 
 int16_t fossil_bletter_is_xdigit(bletter ch) {

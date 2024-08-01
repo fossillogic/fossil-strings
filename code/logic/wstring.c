@@ -13,34 +13,49 @@
  */
 #include "fossil/string/wstring.h"
 
+// Compare two wide strings
 int fossil_wstr_compare(const_wstring str1, const_wstring str2) {
     return wcscmp(str1, str2);
 }
 
+// Copy source wide string to destination
 wstring fossil_wstr_copy(wstring dest, const_wstring src) {
-    return wcscpy(dest, src);
+    if (dest != src) {
+        wcscpy(dest, src);
+    }
+    return dest;
 }
 
+// Concatenate source wide string to destination
 wstring fossil_wstr_concat(wstring dest, const_wstring src) {
-    return wcscat(dest, src);
+    if (src != NULL && dest != src) {
+        wcscat(dest, src);
+    }
+    return dest;
 }
 
+// Find character in wide string
 const_wstring fossil_wstr_find(const_wstring str, wletter ch) {
     return wcschr(str, ch);
 }
 
-const_wstring fossil_wstr_reverse(const_wstring str) {
+// Reverse the wide string
+wstring fossil_wstr_reverse(wstring str) {
     size_t len = wcslen(str);
-    wletter* rev = malloc((len + 1) * sizeof(wletter));
+    wstring reversed = (wstring)malloc((len + 1) * sizeof(wletter));
+    if (!reversed) return NULL;
+
     for (size_t i = 0; i < len; ++i) {
-        rev[i] = str[len - i - 1];
+        reversed[i] = str[len - i - 1];
     }
-    rev[len] = L'\0';
-    return rev;
+    reversed[len] = L'\0';
+    return reversed;
 }
 
+// Split wide string by delimiter
 wstrings fossil_wstr_split(const_wstring str, wletter delimiter) {
     wstrings splits = malloc(sizeof(wstring));
+    if (!splits) return NULL;
     size_t splits_size = 0;
     wstring start = str;
     wstring next = wcschr(start, delimiter);
@@ -48,152 +63,143 @@ wstrings fossil_wstr_split(const_wstring str, wletter delimiter) {
     while (next != NULL) {
         size_t len = next - start;
         wstring substr = malloc((len + 1) * sizeof(wletter));
+        if (!substr) return NULL; // Handle allocation failure
         wcsncpy(substr, start, len);
         substr[len] = L'\0';
         splits = realloc(splits, (splits_size + 1) * sizeof(wstring));
+        if (!splits) return NULL; // Handle reallocation failure
         splits[splits_size++] = substr;
         start = next + 1;
         next = wcschr(start, delimiter);
     }
 
     wstring substr = malloc((wcslen(start) + 1) * sizeof(wletter));
+    if (!substr) return NULL;
     wcscpy(substr, start);
     splits = realloc(splits, (splits_size + 1) * sizeof(wstring));
+    if (!splits) return NULL;
     splits[splits_size++] = substr;
     splits[splits_size] = NULL;
 
     return splits;
 }
 
+// Duplicate wide string
 wstring fossil_wstr_strdup(const_wstring str) {
     size_t len = wcslen(str);
     wstring dup = malloc((len + 1) * sizeof(wletter));
+    if (!dup) return NULL;
     wcscpy(dup, str);
     return dup;
 }
 
+// Get substring of a wide string
 wstring fossil_wstr_substr(const_wstring str, size_t start, size_t len) {
     if (start >= wcslen(str)) {
         return NULL;
     }
     wstring substr = malloc((len + 1) * sizeof(wletter));
+    if (!substr) return NULL;
     wcsncpy(substr, str + start, len);
     substr[len] = L'\0';
     return substr;
 }
 
+// Free memory allocated for split wide strings
 void fossil_wstr_erase_splits(wstrings splits) {
-    for (size_t i = 0; splits[i] != NULL; ++i) {
-        free(splits[i]);
+    if (splits) {
+        for (size_t i = 0; splits[i] != NULL; ++i) {
+            free(splits[i]);
+        }
+        free(splits);
     }
-    free(splits);
 }
 
+// Convert integer to wide string
 wstring fossil_wstr_from_int(int num) {
-    size_t len = snprintf(NULL, 0, "%d", num);
+    size_t len = swprintf(NULL, 0, L"%d", num);
     wstring result = malloc((len + 1) * sizeof(wletter));
+    if (!result) return NULL;
     swprintf(result, len + 1, L"%d", num);
     return result;
 }
 
+// Convert long to wide string
 wstring fossil_wstr_from_long(long num) {
-    size_t len = snprintf(NULL, 0, "%ld", num);
+    size_t len = swprintf(NULL, 0, L"%ld", num);
     wstring result = malloc((len + 1) * sizeof(wletter));
+    if (!result) return NULL;
     swprintf(result, len + 1, L"%ld", num);
     return result;
 }
 
+// Convert long long to wide string
 wstring fossil_wstr_from_llong(long long num) {
-    size_t len = snprintf(NULL, 0, "%lld", num);
+    size_t len = swprintf(NULL, 0, L"%lld", num);
     wstring result = malloc((len + 1) * sizeof(wletter));
+    if (!result) return NULL;
     swprintf(result, len + 1, L"%lld", num);
     return result;
 }
 
+// Convert unsigned long to wide string
 wstring fossil_wstr_from_ulong(unsigned long num) {
-    size_t len = snprintf(NULL, 0, "%lu", num);
+    size_t len = swprintf(NULL, 0, L"%lu", num);
     wstring result = malloc((len + 1) * sizeof(wletter));
+    if (!result) return NULL;
     swprintf(result, len + 1, L"%lu", num);
     return result;
 }
 
+// Convert unsigned long long to wide string
 wstring fossil_wstr_from_ullong(unsigned long long num) {
-    size_t len = snprintf(NULL, 0, "%llu", num);
+    size_t len = swprintf(NULL, 0, L"%llu", num);
     wstring result = malloc((len + 1) * sizeof(wletter));
+    if (!result) return NULL;
     swprintf(result, len + 1, L"%llu", num);
     return result;
 }
 
+// Convert double to wide string
 wstring fossil_wstr_from_double(double num) {
-    size_t len = snprintf(NULL, 0, "%.17g", num);
+    size_t len = swprintf(NULL, 0, L"%.17g", num);
     wstring result = malloc((len + 1) * sizeof(wletter));
+    if (!result) return NULL;
     swprintf(result, len + 1, L"%.17g", num);
     return result;
 }
 
-wstring fossil_wstrstream_read(const_wstring str, size_t* pos, size_t len) {
-    wstring substr = malloc((len + 1) * sizeof(wletter));
-    wcsncpy(substr, str + *pos, len);
-    substr[len] = L'\0';
-    *pos += len;
-    return substr;
-}
-
-wstring fossil_wstrstream_read_line(const_wstring str, size_t* pos, size_t* end_pos) {
-    size_t start = *pos;
-    while (str[*pos] != L'\n' && str[*pos] != L'\0') {
-        (*pos)++;
-    }
-    size_t len = *pos - start;
-    if (str[*pos] == L'\n') {
-        (*pos)++;
-    }
-    *end_pos = *pos;
-    return fossil_wstr_substr(str, start, len);
-}
-
-void fossil_wstrstream_write(wstring dest, size_t* pos, const_wstring src) {
-    wcscpy(dest + *pos, src);
-    *pos += wcslen(src);
-}
-
-void fossil_wstrstream_append(wstring dest, size_t* pos, const_wstring src) {
-    wcscat(dest + *pos, src);
-    *pos += wcslen(src);
-}
-
-void fossil_wstrstream_seek(size_t* pos, size_t offset) {
-    *pos = offset;
-}
-
-size_t fossil_wstrstream_tell(const_wstring str, size_t pos) {
-    return pos;
-}
-
+// Convert wide string to integer
 int fossil_wstr_to_int(const_wstring str) {
     return wcstol(str, NULL, 10);
 }
 
+// Convert wide string to double
 double fossil_wstr_to_double(const_wstring str) {
     return wcstod(str, NULL);
 }
 
+// Convert wide string to long
 long fossil_wstr_to_long(const_wstring str) {
     return wcstol(str, NULL, 10);
 }
 
+// Convert wide string to unsigned long
 unsigned long fossil_wstr_to_ulong(const_wstring str) {
     return wcstoul(str, NULL, 10);
 }
 
+// Convert wide string to long long
 long long fossil_wstr_to_llong(const_wstring str) {
     return wcstoll(str, NULL, 10);
 }
 
+// Convert wide string to unsigned long long
 unsigned long long fossil_wstr_to_ullong(const_wstring str) {
     return wcstoull(str, NULL, 10);
 }
 
+// Convert wide string to boolean
 int fossil_wstr_to_bool(const_wstring str) {
     return wcscmp(str, L"true") == 0 || wcscmp(str, L"yes") == 0 || wcscmp(str, L"on") == 0 || wcstol(str, NULL, 10) != 0;
 }

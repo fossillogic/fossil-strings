@@ -127,49 +127,6 @@ bstring fossil_bstr_from_ullong(unsigned long long num);
  */
 bstring fossil_bstr_from_double(double num);
 
-/** Read a byte string from a stream.
- *  @param str  The byte string stream.
- *  @param pos  The current position in the stream.
- *  @param len  The length of the byte string to read.
- *  @return     The read byte string.
- */
-bstring fossil_bstrstream_read(const_bstring str, size_t* pos, size_t len);
-
-/** Read a line from a byte string stream.
- *  @param str      The byte string stream.
- *  @param pos      The current position in the stream.
- *  @param end_pos  The position of the end of the line.
- *  @return         The read line.
- */
-bstring fossil_bstrstream_read_line(const_bstring str, size_t* pos, size_t* end_pos);
-
-/** Write a byte string to a stream.
- *  @param dest The destination byte string stream.
- *  @param pos  The current position in the stream.
- *  @param src  The source byte string to write.
- */
-void fossil_bstrstream_write(bstring dest, size_t* pos, const_bstring src);
-
-/** Append a byte string to a stream.
- *  @param dest The destination byte string stream.
- *  @param pos  The current position in the stream.
- *  @param src  The source byte string to append.
- */
-void fossil_bstrstream_append(bstring dest, size_t* pos, const_bstring src);
-
-/** Seek to a position in a byte string stream.
- *  @param pos     The current position in the stream.
- *  @param offset  The offset to seek.
- */
-void fossil_bstrstream_seek(size_t* pos, size_t offset);
-
-/** Get the current position in a byte string stream.
- *  @param str  The byte string stream.
- *  @param pos  The current position in the stream.
- *  @return     The current position in the stream.
- */
-size_t fossil_bstrstream_tell(const_bstring str, size_t pos);
-
 /** Convert a byte string to an integer.
  *  @param str The byte string to convert.
  *  @return    The converted integer.

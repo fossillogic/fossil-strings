@@ -127,49 +127,6 @@ cstring fossil_cstr_from_ullong(unsigned long long num);
  */
 cstring fossil_cstr_from_double(double num);
 
-/** Read a specified number of characters from a C string stream.
- *  @param str  The C string stream to read from.
- *  @param pos  A pointer to the current position in the stream.
- *  @param len  The number of characters to read.
- *  @return     A pointer to the read characters.
- */
-cstring fossil_cstrstream_read(const_cstring str, size_t *pos, size_t len);
-
-/** Read a line from a C string stream.
- *  @param str      The C string stream to read from.
- *  @param pos      A pointer to the current position in the stream.
- *  @param end_pos  A pointer to the end position of the line.
- *  @return         A pointer to the read line.
- */
-cstring fossil_cstrstream_read_line(const_cstring str, size_t *pos, size_t *end_pos);
-
-/** Write a C string to a specified position in a C string stream.
- *  @param dest The destination C string stream.
- *  @param pos  A pointer to the current position in the stream.
- *  @param src  The source C string to write.
- */
-void fossil_cstrstream_write(cstring dest, size_t *pos, const_cstring src);
-
-/** Append a C string to a specified position in a C string stream.
- *  @param dest The destination C string stream.
- *  @param pos  A pointer to the current position in the stream.
- *  @param src  The source C string to append.
- */
-void fossil_cstrstream_append(cstring dest, size_t *pos, const_cstring src);
-
-/** Seek to a specified offset in a C string stream.
- *  @param pos     A pointer to the current position in the stream.
- *  @param offset  The offset to seek.
- */
-void fossil_cstrstream_seek(size_t *pos, size_t offset);
-
-/** Get the current position in a C string stream.
- *  @param str  The C string stream.
- *  @param pos  The current position in the stream.
- *  @return     The current position in the stream.
- */
-size_t fossil_cstrstream_tell(const_cstring str, size_t pos);
-
 /** Convert a C string to an integer.
  *  @param str The C string to convert.
  *  @return    The converted integer value.
