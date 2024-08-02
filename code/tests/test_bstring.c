@@ -39,14 +39,14 @@ FOSSIL_TEST(test_fossil_bstring_create) {
 
 // Test case 2: Test fossil_bstring_create with a string
 FOSSIL_TEST(test_fossil_bstring_create_with_value) {
-    bstring var = fossil_bstr_create((bstring)(bstring, "Pizza time!"));
+    bstring var = fossil_bstr_create((bstring)"Pizza time!"));
     ASSUME_ITS_EQUAL_BSTR("Pizza time!", var);
     fossil_bstr_erase(var); // Clean up after creating a bstring
 }
 
 // Test case 3: Test fossil_bstring_create with a string and length
 FOSSIL_TEST(test_fossil_bstring_create_with_value_and_length) {
-    bstring var = fossil_bstr_create((bstring)(bstring, "Pizza"));
+    bstring var = fossil_bstr_create((bstring)"Pizza"));
     ASSUME_ITS_EQUAL_BSTR("Pizza", var);
     ASSUME_ITS_EQUAL_SIZE(5, fossil_bstr_length(var));
     fossil_bstr_erase(var); // Clean up after creating a bstring
