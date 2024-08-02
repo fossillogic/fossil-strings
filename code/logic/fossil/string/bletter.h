@@ -25,7 +25,7 @@ extern "C" {
 #include <stdio.h>  // For standard I/O operations like printf, scanf, etc.
 #include <stdarg.h> // For handling variable arguments like va_list, va_start, etc.
 #include <ctype.h>  // For character classification functions like isalpha, isdigit, etc.
-#include <error.h>  // For error handling functions like perror, strerror, etc.
+#include <errno.h>  // For system error numbers like EINTR, EINVAL, etc.
 #include <limits.h> // For standard integer limits like INT_MAX, INT_MIN, etc.
 
 // charecter types for the string types

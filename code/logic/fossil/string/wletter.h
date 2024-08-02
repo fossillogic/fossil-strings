@@ -26,7 +26,7 @@ extern "C" {
 #include <stdarg.h> // For handling variable arguments like va_list, va_start, etc.
 #include <wchar.h>  // For wide character functions like wcslen, wcscpy, etc.
 #include <wctype.h> // For wide character classification functions like iswalpha, iswdigit, etc.
-#include <error.h>  // For error handling functions like perror, strerror, etc.
+#include <errno.h>  // For error handling functions like perror, strerror, etc.
 #include <limits.h> // For standard integer limits like INT_MAX, INT_MIN, etc.
 
 // charecter types for the string types
