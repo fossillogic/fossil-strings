@@ -13,79 +13,108 @@
  */
 #include "fossil/string/bletter.h"
 
+// Return the byte at the specified index in a byte string
 bletter fossil_bletter_at(const_bletter *str, size_t index) {
-    if (str == NULL)
-        return (uint16_t)'\0';
-    
-    size_t len = 0;
-    while (str[len] != (uint16_t)'\0')
-        len++;
-    
-    if (index >= len)
-        return (uint16_t)'\0';
-    
+    if (!str || index >= fossil_bstr_length(str)) {
+        return '\0'; // Return null character for out-of-bounds access or null pointer
+    }
     return str[index];
 }
 
+// bletter functions
 int16_t fossil_bletter_is_alpha(bletter ch) {
-    return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
+    if (ch == '\0') {
+        return 0;
+    }
+    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
 }
 
 int16_t fossil_bletter_is_digit(bletter ch) {
-    return (ch >= '0' && ch <= '9');
+    if (ch == '\0') {
+        return 0;
+    }
+    return ch >= '0' && ch <= '9';
 }
 
 int16_t fossil_bletter_is_alnum(bletter ch) {
+    if (ch == '\0') {
+        return 0;
+    }
     return fossil_bletter_is_alpha(ch) || fossil_bletter_is_digit(ch);
 }
 
 int16_t fossil_bletter_is_lower(bletter ch) {
-    return (ch >= 'a' && ch <= 'z');
+    if (ch == '\0') {
+        return 0;
+    }
+    return ch >= 'a' && ch <= 'z';
 }
 
 int16_t fossil_bletter_is_upper(bletter ch) {
-    return (ch >= 'A' && ch <= 'Z');
+    if (ch == '\0') {
+        return 0;
+    }
+    return ch >= 'A' && ch <= 'Z';
 }
 
 bletter fossil_bletter_to_lower(bletter ch) {
-    if (fossil_bletter_is_upper(ch))
+    if (ch == '\0') {
+        return 0;
+    }
+    if (fossil_bletter_is_upper(ch)) {
         return ch + ('a' - 'A');
-    else
-        return ch;
+    }
+    return ch;
 }
 
 bletter fossil_bletter_to_upper(bletter ch) {
-    if (fossil_bletter_is_lower(ch))
+    if (ch == '\0') {
+        return 0;
+    }
+    if (fossil_bletter_is_lower(ch)) {
         return ch - ('a' - 'A');
-    else
-        return ch;
+    }
+    return ch;
 }
 
 int16_t fossil_bletter_is_space(bletter ch) {
-    return (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\v' || ch == '\f' || ch == '\r');
+    if (ch == '\0') {
+        return 0;
+    }
+    return isspace(ch);
 }
 
 int16_t fossil_bletter_is_punct(bletter ch) {
-    return ((ch >= '!' && ch <= '/') ||
-            (ch >= ':' && ch <= '@') ||
-            (ch >= '[' && ch <= '`') ||
-            (ch >= '{' && ch <= '~'));
+    if (ch == '\0') {
+        return 0;
+    }
+    return ispunct(ch);
 }
 
 int16_t fossil_bletter_is_graph(bletter ch) {
-    return (ch >= '!' && ch <= '~');
+    if (ch == '\0') {
+        return 0;
+    }
+    return isgraph(ch);
 }
 
 int16_t fossil_bletter_is_print(bletter ch) {
-    return (ch >= ' ' && ch <= '~');
+    if (ch == '\0') {
+        return 0;
+    }
+    return isprint(ch);
 }
 
 int16_t fossil_bletter_is_cntrl(bletter ch) {
-    return (ch <= 31) || (ch == 127);
+    if (ch == '\0') {
+        return 0;
+    }
+    return iscntrl(ch);
 }
 
 int16_t fossil_bletter_is_xdigit(bletter ch) {
-    return (fossil_bletter_is_digit(ch) ||
-            (ch >= 'A' && ch <= 'F') ||
-            (ch >= 'a' && ch <= 'f'));
+    if (ch == '\0') {
+        return 0;
+    }
+    return isxdigit(ch);
 }

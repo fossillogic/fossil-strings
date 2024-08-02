@@ -17,9 +17,11 @@
 // String types
 #include "cstring.h"
 #include "bstring.h"
+#include "wstring.h"
 
 // Character types
 #include "cletter.h"
 #include "bletter.h"
+#include "wletter.h"
 
 #endif /* FOSSIL_STRINGS_FRAMEWORK_H */

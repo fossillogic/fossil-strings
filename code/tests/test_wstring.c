@@ -30,35 +30,35 @@
 // * Fossil Logic Test classic string
 // * * * * * * * * * * * * * * * * * * * * * * * *
 
-// Test case 1: Test fossil_cstring_create with NULL
-FOSSIL_TEST(test_fossil_cstring_create) {
-    cstring var = NULL;
-    ASSUME_ITS_TRUE(NULL == fossil_cstr_create(var));
-    fossil_cstr_erase(var); // Clean up after creating a cstring
+// Test case 1: Test fossil_wstring_create
+FOSSIL_TEST(test_fossil_wstring_create) {
+    wstring var = NULL;
+    ASSUME_ITS_TRUE(NULL == fossil_wstr_create(var));
+    fossil_wstr_erase(var); // Clean up after creating a wstring
 }
 
-// Test case 2: Test fossil_cstring_create with a string
-FOSSIL_TEST(test_fossil_cstring_create_with_value) {
-    cstring var = fossil_cstr_create("Pizza time!");
-    ASSUME_ITS_EQUAL_CSTR("Pizza time!", var);
-    fossil_cstr_erase(var); // Clean up after creating a cstring
+// Test case 2: Test fossil_wstring_create with a string
+FOSSIL_TEST(test_fossil_wstring_create_with_value) {
+    wstring var = fossil_wstr_create(L"Pizza time!");
+    ASSUME_ITS_EQUAL_WSTR(L"Pizza time!", var);
+    fossil_wstr_erase(var); // Clean up after creating a wstring
 }
 
-// Test case 3: Test fossil_cstring_create with a string and length
-FOSSIL_TEST(test_fossil_cstring_create_with_value_and_length) {
-    cstring var = fossil_cstr_create("Pizza");
-    ASSUME_ITS_EQUAL_CSTR("Pizza", var);
-    ASSUME_ITS_EQUAL_SIZE(5, fossil_cstr_length(var));
-    fossil_cstr_erase(var); // Clean up after creating a cstring
+// Test case 3: Test fossil_wstring_create with a string and length
+FOSSIL_TEST(test_fossil_wstring_create_with_value_and_length) {
+    wstring var = fossil_wstr_create(L"Pizza");
+    ASSUME_ITS_EQUAL_WSTR(L"Pizza", var);
+    ASSUME_ITS_EQUAL_SIZE(5, fossil_wstr_length(var));
+    fossil_wstr_erase(var); // Clean up after creating a wstring
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * *
 // * Fossil Logic Test Pool
 // * * * * * * * * * * * * * * * * * * * * * * * *
 
-FOSSIL_TEST_GROUP(c_cstrings_tests) {    
+FOSSIL_TEST_GROUP(c_wstrings_tests) {    
     // Classic Strings Fixture
-    ADD_TEST(test_fossil_cstring_create);
-    ADD_TEST(test_fossil_cstring_create_with_value);
-    ADD_TEST(test_fossil_cstring_create_with_value_and_length);
+    ADD_TEST(test_fossil_wstring_create);
+    ADD_TEST(test_fossil_wstring_create_with_value);
+    ADD_TEST(test_fossil_wstring_create_with_value_and_length);
 } // end of tests

@@ -1,8 +1,8 @@
 dir = include_directories('.')
 
 fossil_strings_lib = library('fossil-strings',
-    files('bstring.c', 'cstring.c',
-          'bletter.c', 'cletter.c'),
+    files('bstring.c', 'cstring.c', 'wstring.c',
+          'bletter.c', 'cletter.c', 'wletter.c'),
     install: true,
     include_directories: dir)
 

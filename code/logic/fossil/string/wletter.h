@@ -11,8 +11,8 @@
  * Copyright (C) 2024 Fossil Logic. All rights reserved.
  * -----------------------------------------------------------------------------
  */
-#ifndef FOSSIL_STRINGS_BLETTER_H
-#define FOSSIL_STRINGS_BLETTER_H
+#ifndef FOSSIL_STRINGS_WLETTER_H
+#define FOSSIL_STRINGS_WLETTER_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -25,109 +25,108 @@ extern "C" {
 #include <stdio.h>  // For standard I/O operations like printf, scanf, etc.
 
 // charecter types for the string types
-typedef uint16_t bletter;             // byte letter character
-typedef const uint16_t const_bletter; // const byte letter character
+typedef wchar_t wletter;             // byte letter character
+typedef const wchar_t const_wletter; // const byte letter character
 
 /**
- * @brief Return the byte at the specified index in a byte string.
+ * @brief Return the wide character at the specified index in a null-terminated wide C string.
  *
- * @param str   The input byte string.
- * @param index The index of the byte to retrieve.
- * @return      The byte at the specified index, or '\0' if the index is out of bounds or the string is NULL.
+ * @param str   The input null-terminated wide C string.
+ * @param index The index of the wide character to retrieve.
+ * @return      The wide character at the specified index, or L'\0' if the index is out of bounds or the string is NULL.
  */
-bletter fossil_bletter_at(const_bletter *str, size_t index);
-
+wletter fossil_wletter_at(const_wletter *str, size_t index);
 
 /**
- * Check if the character is an alphabetic character.
+ * Check if the wletter is an alphabetic character.
  * 
  * Returns a non-zero value if 'ch' is an alphabetic character, otherwise 0.
  */
-int16_t fossil_bletter_is_alpha(bletter ch);
+int16_t fossil_wletter_is_alpha(wletter ch);
 
 /**
- * Check if the character is a digit.
+ * Check if the wletter is a digit.
  * 
  * Returns a non-zero value if 'ch' is a digit, otherwise 0.
  */
-int16_t fossil_bletter_is_digit(bletter ch);
+int16_t fossil_wletter_is_digit(wletter ch);
 
 /**
- * Check if the character is an alphanumeric character.
+ * Check if the wletter is an alphanumeric character.
  * 
  * Returns a non-zero value if 'ch' is an alphanumeric character, otherwise 0.
  */
-int16_t fossil_bletter_is_alnum(bletter ch);
+int16_t fossil_wletter_is_alnum(wletter ch);
 
 /**
- * Check if the character is a lowercase letter.
+ * Check if the wletter is a lowercase letter.
  * 
  * Returns a non-zero value if 'ch' is a lowercase letter, otherwise 0.
  */
-int16_t fossil_bletter_is_lower(bletter ch);
+int16_t fossil_wletter_is_lower(wletter ch);
 
 /**
- * Check if the character is an uppercase letter.
+ * Check if the wletter is an uppercase letter.
  * 
  * Returns a non-zero value if 'ch' is an uppercase letter, otherwise 0.
  */
-int16_t fossil_bletter_is_upper(bletter ch);
+int16_t fossil_wletter_is_upper(wletter ch);
 
 /**
- * Convert the character to lowercase.
+ * Convert the wletter to lowercase.
  * 
  * Returns the lowercase version of 'ch' if 'ch' is an uppercase letter, otherwise 'ch'.
  */
-bletter fossil_bletter_to_lower(bletter ch);
+wletter fossil_wletter_to_lower(wletter ch);
 
 /**
- * Convert the character to uppercase.
+ * Convert the wletter to uppercase.
  * 
  * Returns the uppercase version of 'ch' if 'ch' is a lowercase letter, otherwise 'ch'.
  */
-bletter fossil_bletter_to_upper(bletter ch);
+wletter fossil_wletter_to_upper(wletter ch);
 
 /**
- * Check if the character is a whitespace character.
+ * Check if the wletter is a whitespace character.
  * 
  * Returns a non-zero value if 'ch' is a whitespace character, otherwise 0.
  */
-int16_t fossil_bletter_is_space(bletter ch);
+int16_t fossil_wletter_is_space(wletter ch);
 
 /**
- * Check if the character is a punctuation character.
+ * Check if the wletter is a punctuation character.
  * 
  * Returns a non-zero value if 'ch' is a punctuation character, otherwise 0.
  */
-int16_t fossil_bletter_is_punct(bletter ch);
+int16_t fossil_wletter_is_punct(wletter ch);
 
 /**
- * Check if the character is a printable character excluding space.
+ * Check if the wletter is a printable character excluding space.
  * 
  * Returns a non-zero value if 'ch' is a printable character excluding space, otherwise 0.
  */
-int16_t fossil_bletter_is_graph(bletter ch);
+int16_t fossil_wletter_is_graph(wletter ch);
 
 /**
- * Check if the character is a printable character including space.
+ * Check if the wletter is a printable character including space.
  * 
  * Returns a non-zero value if 'ch' is a printable character including space, otherwise 0.
  */
-int16_t fossil_bletter_is_print(bletter ch);
+int16_t fossil_wletter_is_print(wletter ch);
 
 /**
- * Check if the character is a control character.
+ * Check if the wletter is a control character.
  * 
  * Returns a non-zero value if 'ch' is a control character, otherwise 0.
  */
-int16_t fossil_bletter_is_cntrl(bletter ch);
+int16_t fossil_wletter_is_cntrl(wletter ch);
 
 /**
- * Check if the character is a hexadecimal digit.
+ * Check if the wletter is a hexadecimal digit.
  * 
  * Returns a non-zero value if 'ch' is a hexadecimal digit, otherwise 0.
  */
-int16_t fossil_bletter_is_xdigit(bletter ch);
+int16_t fossil_wletter_is_xdigit(wletter ch);
 
 #ifdef __cplusplus
 } // namespae fossil
