@@ -40,7 +40,7 @@ typedef const wchar_t const_wletter; // const byte letter character
  * @param index The index of the wide character to retrieve.
  * @return      The wide character at the specified index, or L'\0' if the index is out of bounds or the string is NULL.
  */
-wletter fossil_wletter_at(const_wletter *str, size_t index);
+wletter fossil_wletter_at(wletter *str, size_t index);
 
 /**
  * Check if the wletter is an alphabetic character.

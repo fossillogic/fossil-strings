@@ -14,8 +14,8 @@
 #include "fossil/string/bletter.h"
 
 // Return the byte at the specified index in a byte string
-bletter fossil_bletter_at(const_bletter *str, size_t index) {
-    if (!str || index >= fossil_bstr_length(str)) {
+bletter fossil_bletter_at(bletter *str, size_t index) {
+    if (!str || index >= strlen((char *)str)) {
         return '\0'; // Return null character for out-of-bounds access or null pointer
     }
     return str[index];

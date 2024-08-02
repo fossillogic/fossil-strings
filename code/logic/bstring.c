@@ -32,7 +32,7 @@ bstring fossil_bstr_create(const_bstring str) {
     if (!str) {
         return NULL; // Validate input to prevent NULL pointer dereference
     }
-    return (bstring)fossil_bstr_strdup((const char *)str); // Allocate memory and copy string using strdup
+    return fossil_bstr_strdup(str); // Allocate memory and copy string using strdup
 }
 
 void fossil_bstr_erase(bstring str) {

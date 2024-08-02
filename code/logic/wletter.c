@@ -14,7 +14,7 @@
 #include "fossil/string/wletter.h"
 
 // Return the wide character at the specified index in a null-terminated wide C string
-wletter fossil_wletter_at(const_wletter *str, size_t index) {
+wletter fossil_wletter_at(wletter *str, size_t index) {
     if (!str || index >= wcslen(str)) {
         return L'\0'; // Return null wide character for out-of-bounds access or null pointer
     }

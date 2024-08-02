@@ -14,8 +14,8 @@
 #include "fossil/string/cletter.h"
 
 // Return the character at the specified index in a null-terminated C string
-cletter fossil_cletter_at(const_cletter *str, size_t index) {
-    if (!str || index >= fossil_cstr_length(str)) {
+cletter fossil_cletter_at(cletter *str, size_t index) {
+    if (!str || index >= strlen(str)) {
         return '\0'; // Return null character for out-of-bounds access or null pointer
     }
     return str[index];

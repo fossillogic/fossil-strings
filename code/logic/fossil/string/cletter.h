@@ -39,7 +39,7 @@ typedef const char const_cletter;    // const classic C style character
  * @param index The index of the character to retrieve.
  * @return      The character at the specified index, or '\0' if the index is out of bounds or the string is NULL.
  */
-cletter fossil_cletter_at(const_cletter *str, size_t index);
+cletter fossil_cletter_at(cletter *str, size_t index);
 
 /**
  * Check if the character is an alphabetic character.

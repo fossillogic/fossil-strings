@@ -39,7 +39,7 @@ typedef const uint16_t const_bletter; // const byte letter character
  * @param index The index of the byte to retrieve.
  * @return      The byte at the specified index, or '\0' if the index is out of bounds or the string is NULL.
  */
-bletter fossil_bletter_at(const_bletter *str, size_t index);
+bletter fossil_bletter_at(bletter *str, size_t index);
 
 
 /**
