@@ -310,7 +310,7 @@ cstring fossil_cstrstream_read(const_cstring str, size_t *pos, size_t len);
  * Returns the read line and updates '*pos' to the next position after the newline.
  * Updates '*end_pos' to the position of the newline or end of string.
  */
-cstring fossil_cstrstream_read_line(const_cstring str, size_t *pos, size_t *end_pos);
+cstring fossil_cstrstream_read_line(cstring str, size_t *pos, size_t *end_pos);
 
 /**
  * Write a string to the given classic C string 'dest'.

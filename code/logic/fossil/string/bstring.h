@@ -313,7 +313,7 @@ bstring fossil_bstrstream_read(const_bstring str, size_t *pos, size_t len);
  * Returns the read line and updates '*pos' to the next position after the newline.
  * Updates '*end_pos' to the position of the newline or end of string.
  */
-bstring fossil_bstrstream_read_line(const_bstring str, size_t *pos, size_t *end_pos);
+bstring fossil_bstrstream_read_line(bstring str, size_t *pos, size_t *end_pos);
 
 /**
  * Write a byte string to the given byte string 'dest'.

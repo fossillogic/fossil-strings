@@ -298,7 +298,7 @@ bstring fossil_bstrstream_read(const_bstring str, size_t *pos, size_t len) {
 }
 
 // Read a line from the string starting at position 'pos' and update 'end_pos'
-bstring fossil_bstrstream_read_line(const_bstring str, size_t *pos, size_t *end_pos) {
+bstring fossil_bstrstream_read_line(bstring str, size_t *pos, size_t *end_pos) {
     if (!str || *pos >= fossil_bstr_length(str) || !end_pos) {
         return NULL; // Invalid input or end of string reached
     }

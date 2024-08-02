@@ -312,7 +312,7 @@ wstring fossil_wstrstream_read(const_wstring str, size_t *pos, size_t len);
  * @param end_pos Pointer to the end position of the read line. Updated after reading.
  * @return wstring The line read from the wide string.
  */
-wstring fossil_wstrstream_read_line(const_wstring str, size_t *pos, size_t *end_pos);
+wstring fossil_wstrstream_read_line(wstring str, size_t *pos, size_t *end_pos);
 
 /**
  * @brief Write the source wide string to the destination starting at position 'pos'.

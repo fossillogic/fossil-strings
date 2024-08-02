@@ -303,7 +303,7 @@ cstring fossil_cstrstream_read(const_cstring str, size_t *pos, size_t len) {
 }
 
 // Read a line from the string starting at position 'pos' and update 'end_pos'
-cstring fossil_cstrstream_read_line(const_cstring str, size_t *pos, size_t *end_pos) {
+cstring fossil_cstrstream_read_line(cstring str, size_t *pos, size_t *end_pos) {
     if (!str || *pos >= strlen(str) || !end_pos) {
         return NULL; // Invalid input or end of string reached
     }
