@@ -23,6 +23,8 @@ extern "C" {
 #include <string.h> // For C string operations like strlen, strcpy, etc.
 #include <stdlib.h> // For dynamic memory allocation functions like malloc, free
 #include <stdio.h>  // For standard I/O operations like printf, scanf, etc.
+#include <stdarg.h> // For handling variable arguments like va_list, va_start, etc.
+#include <ctype.h>  // For character classification functions like isalpha, isdigit, etc.
 
 // charecter types for the string types
 typedef char cletter;                // classic C style character
