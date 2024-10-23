@@ -17,7 +17,7 @@
 #include <fossil/string/framework.h>
 
 #include <fossil/unittest/framework.h>
-#include <fossil/xassume.h>
+#include <fossil/unittest/assume.h>
 
 // * * * * * * * * * * * * * * * * * * * * * * * *
 // * Fossil Logic Test Utilities
